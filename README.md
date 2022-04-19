@@ -1,4 +1,4 @@
-# :cloud: next-serverless [![npm version](https://badgen.net/npm/v/next-serverless)](https://www.npmjs.com/package/next-serverless) [![license](https://badgen.net/npm/license/next-serverless)](https://github.com/cyrilwanner/next-serverless/blob/master/LICENSE)
+# :cloud: next-serverless [![npm version](https://badgen.net/npm/v/next-serverless)](https://www.npmjs.com/package/nextjs12-serverless) [![license](https://badgen.net/npm/license/nextjs12-serverless)](https://github.com/cyrilwanner/next-serverless/blob/master/LICENSE)
 
 > It has never been easier to deploy a [next.js](https://github.com/zeit/next.js) application to AWS Lambda!
 
@@ -19,7 +19,7 @@
 ## Installation
 
 ```
-npm install --save next-serverless
+npm install --save nextjs12-serverless
 ```
 
 During install, a default `serverless.yml` gets created if you don't already have one (if not, copy it from [here](https://github.com/cyrilwanner/next-serverless/blob/master/default-serverless.yml)).
