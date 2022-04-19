@@ -1,6 +1,6 @@
 {
   "name": "nextjs12-serverless",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Runs your next.js 12 app with serverless in the cloud",
   "main": "lib/index.js",
   "bin": {
