@@ -1,4 +1,4 @@
-# :cloud: next-serverless [![npm version](https://badgen.net/npm/v/next-serverless)](https://www.npmjs.com/package/nextjs12-serverless) [![license](https://badgen.net/npm/license/nextjs12-serverless)](https://github.com/cyrilwanner/next-serverless/blob/master/LICENSE)
+# :cloud: next-serverless [![npm version](https://badgen.net/npm/v/nextjs12-serverless)](https://www.npmjs.com/package/nextjs12-serverless) [![license](https://badgen.net/npm/license/nextjs12-serverless)](https://github.com/cyrilwanner/next-serverless/blob/master/LICENSE)
 
 > It has never been easier to deploy a [next.js](https://github.com/zeit/next.js) application to AWS Lambda!
 
