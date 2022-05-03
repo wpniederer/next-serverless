@@ -4,11 +4,11 @@ import { findNext, executeCommand } from '../next/cli';
 
 const isHelp = process.argv.indexOf('-h') >= 0 || process.argv.indexOf('--help') >= 0;
 
-// next-serverless dev
+// nextjs12-serverless dev
 if (!isHelp && (process.argv.length <= 2 || process.argv[2].startsWith('-') || process.argv[2] === 'dev')) {
   require(path.resolve(__dirname, '..', 'server')); // eslint-disable-line
 
-// next-serverless start
+// nextjs12-serverless start
 } else if (!isHelp && process.argv.length > 2 && process.argv[2] === 'start') {
   process.env.NODE_ENV = 'production';
   require(path.resolve(__dirname, '..', 'server')); // eslint-disable-line
@@ -21,7 +21,7 @@ if (!isHelp && (process.argv.length <= 2 || process.argv[2].startsWith('-') || p
 
   if (isHelp) {
     exec.then((output) => {
-      console.log(output.replace(/\$ next /g, '$ next-serverless '));
+      console.log(output.replace(/\$ next /g, '$ nextjs12-serverless '));
     });
   }
 }
