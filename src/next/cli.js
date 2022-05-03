@@ -9,8 +9,8 @@ import { spawn } from 'cross-spawn';
  */
 export const findNext = () => {
   const possiblePaths = [
-    '../node_modules/next', // local development with npm link
-    '../../next', // installed as a normal dependency
+    '../../node_modules/next', // local development with npm link
+    '../../../next', // installed as a normal dependency
   ];
 
   const nextPath = possiblePaths.find(p => fs.existsSync(path.resolve(__dirname, p)));

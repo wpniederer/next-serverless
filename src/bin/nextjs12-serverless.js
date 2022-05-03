@@ -6,12 +6,12 @@ const isHelp = process.argv.indexOf('-h') >= 0 || process.argv.indexOf('--help')
 
 // nextjs12-serverless dev
 if (!isHelp && (process.argv.length <= 2 || process.argv[2].startsWith('-') || process.argv[2] === 'dev')) {
-  require(path.resolve(__dirname, '..', 'server')); // eslint-disable-line
+  require(path.resolve(__dirname, '..', 'next/server')); // eslint-disable-line
 
 // nextjs12-serverless start
 } else if (!isHelp && process.argv.length > 2 && process.argv[2] === 'start') {
   process.env.NODE_ENV = 'production';
-  require(path.resolve(__dirname, '..', 'server')); // eslint-disable-line
+  require(path.resolve(__dirname, '..', 'next/server')); // eslint-disable-line
 
 // pipe all other commands to the next executable
 } else {
