@@ -1,8 +1,8 @@
-# :cloud: next-serverless [![npm version](https://badgen.net/npm/v/nextjs12-serverless)](https://www.npmjs.com/package/nextjs12-serverless) [![license](https://badgen.net/npm/license/nextjs12-serverless)](https://github.com/cyrilwanner/next-serverless/blob/master/LICENSE)
+# :cloud: nextjs12-serverless [![npm version](https://badgen.net/npm/v/nextjs12-serverless)](https://www.npmjs.com/package/nextjs12-serverless) [![license](https://badgen.net/npm/license/nextjs12-serverless)](https://github.com/cyrilwanner/next-serverless/blob/master/LICENSE)
 
 > It has never been easier to deploy a [next.js](https://github.com/zeit/next.js) application to AWS Lambda!
 
-`next-serverless` handles everything for you and deploys your [next.js](https://github.com/zeit/next.js) application to AWS Lambda with minimal or even no configuration using the [serverless](https://serverless.com/framework/) framework.
+`nextjs12-serverless` handles everything for you and deploys your [next.js](https://github.com/zeit/next.js) application to AWS Lambda with minimal or even no configuration using the [serverless](https://serverless.com/framework/) framework.
 
 ## Table of contents
 
@@ -22,10 +22,10 @@
 npm install --save nextjs12-serverless
 ```
 
-During install, a default `serverless.yml` gets created if you don't already have one (if not, copy it from [here](https://github.com/cyrilwanner/next-serverless/blob/master/default-serverless.yml)).
+During install, a default `serverless.yml` gets created if you don't already have one (if not, copy it from [here](https://github.com/cyrilwanner/nextjs12-serverless/blob/master/default-serverless.yml)).
 You might want to update it to your needs.
 
-If you are not using a custom server, replace the `next` binaries in your `package.json` with `next-serverless`:
+If you are not using a custom server, replace the `next` binaries in your `package.json` with `nextjs12-serverless`:
 
 ```diff
 {
@@ -33,9 +33,9 @@ If you are not using a custom server, replace the `next` binaries in your `packa
 -    "dev": "next",
 -    "build": "next build",
 -    "start": "next start"
-+    "dev": "next-serverless",
-+    "build": "next-serverless build",
-+    "start": "next-serverless start"
++    "dev": "nextjs12-serverless",
++    "build": "nextjs12-serverless build",
++    "start": "nextjs12-serverless start"
   }
 }
 ```
@@ -57,13 +57,13 @@ This is a limitation by next.js as it, unfortunately, doesn't support path prefi
 
 If you are using the randomly generated ApiGateway hostnames, you may have noticed that they have the stage as a path prefix (e.g. `nnptap4nw2.execute-api.eu-west-1.amazonaws.com/prod`).
 
-`next-serverless` provides a link component which automatically detects those links and automatically adds the stage prefix if required.
+`nextjs12-serverless` provides a link component which automatically detects those links and automatically adds the stage prefix if required.
 
 This link component has exactly the same signature as the default next.js link component, so you can simply change the imports:
 
 ```diff
 -import Link from 'next/link';
-+import Link from 'next-serverless/link';
++import Link from 'nextjs12-serverless/link';
 
 export default () => (
   <Link href="/about">
@@ -76,7 +76,7 @@ export default () => (
 
 When you are including assets in your app (e.g. `/_next/static/style.css` for CSS or an image `/_next/static/my-image.png`), you would also get a 404 because it doesn't include the stage prefix.
 
-`next-serverless` provides a few helper functions which you can use in these cases:
+`nextjs12-serverless` provides a few helper functions which you can use in these cases:
 
 ##### `prefixPath(path: string): string`
 
@@ -93,7 +93,7 @@ If you are using this function instead of `prefixPath`, you have to take care of
 ```js
 // ./pages/_document.js
 import Document, { Head, Main, NextScript } from 'next/document';
-import { prefixPath, getPathPrefix } from 'next-serverless';
+import { prefixPath, getPathPrefix } from 'nextjs12-serverless';
 
 export default class MyDocument extends Document {
   render() {
@@ -129,9 +129,9 @@ For example, create a new `Image` component which automatically prefixes the `sr
 There are a few changes needed to perform if you are using a [custom server](https://github.com/zeit/next.js#custom-server-and-routing).
 
 First of all, your server file needs to export a handler function which AWS Lambda will then call.
-`next-serverless/handler` provides you a wrapper function for that so you don't have to handle much on your own.
+`nextjs12-serverless/handler` provides you a wrapper function for that so you don't have to handle much on your own.
 
-Please note that you should **not** call `app.prepare()` by yourself anymore, `next-serverless` will automatically do it at the right time.
+Please note that you should **not** call `app.prepare()` by yourself anymore, `nextjs12-serverless` will automatically do it at the right time.
 You can just use the callback or handler functions provided.
 
 #### `nextServerless(app: Server, handler: (req, res) => void, runLocal: () => void)`
@@ -161,7 +161,7 @@ You should do that within this callback function.
 const { createServer } = require('http');
 const { parse } = require('url');
 const next = require('next');
-const nextServerless = require('next-serverless/handler');
+const nextServerless = require('nextjs12-serverless/handler');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -191,7 +191,7 @@ module.exports.handler = nextServerless(app, requestHandler, () => {
 });
 ```
 
-There are also a few more examples (custom routing, using `next-routes` or `express`) in the [examples](https://github.com/cyrilwanner/next-serverless/tree/master/examples/custom-servers) directory.
+There are also a few more examples (custom routing, using `next-routes` or `express`) in the [examples](https://github.com/cyrilwanner/nextjs12-serverless/tree/master/examples/custom-servers) directory.
 
 If you need assistance to get your custom server running, please feel free to create an issue.
 More examples are also welcome with a PR.
@@ -201,7 +201,7 @@ More examples are also welcome with a PR.
 The last step you have to do when using a custom server is updating your `serverless.yml` file.
 
 In `functions.app.handler`, we specify the file and exported function which AWS Lambda should execute for every request.
-By default, we use the provided server by `next-serverless` but since you are using a custom server, you also want to change that.
+By default, we use the provided server by `nextjs12-serverless` but since you are using a custom server, you also want to change that.
 
 Simply change this value to the location and exported function of your custom server using the standard Lambda syntax.
 
@@ -209,7 +209,7 @@ For example, if you have a `server.js` in your root folder, simply use `server.h
 
 ## Serverless commands
 
-`next-serverless` is fully compatible with the [serverless](https://serverless.com/framework/) framework so you can use the same commands here.
+`nextjs12-serverless` is fully compatible with the [serverless](https://serverless.com/framework/) framework so you can use the same commands here.
 
 You can either install `serverless` locally, globally (`npm install --global serverless`) or use `npx` which comes with npm 5.2+ and higher.
 
@@ -234,4 +234,4 @@ $ npx logs --stage prod -f app -t
 
 ## License
 
-[MIT](https://github.com/cyrilwanner/next-serverless/blob/master/LICENSE) © Cyril Wanner
+[MIT](https://github.com/cyrilwanner/nextjs12-serverless/blob/master/LICENSE) © Cyril Wanner
